@@ -3,8 +3,10 @@
 {% load staticfiles %}
 
 {% block body_block %}
-<h1>about</h1>
+<h1>About Rango</h1>
+<p>visits: {{ visits }}</p>
+
 {% load static %}
-<img src="{% static "images/rango.jpg" %}" alt="a rango picture" />
+<img src="{% static "images/rango.jpg" %}" alt="a rango picture" style="width: 200px; height: 200px;"/>
 
 {% endblock %}

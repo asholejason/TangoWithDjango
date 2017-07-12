@@ -10,7 +10,10 @@
     <h1>Rango says... hello world!</h1>
 {% endif %}
 
+<p>visits: {{ visits }}</p>
+
 <h2>1. Most Liked Categories</h2>
+
 {% if categories %}
     <ul>
         {% for category in categories %}
