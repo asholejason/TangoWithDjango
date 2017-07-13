@@ -1,20 +1,35 @@
-{% extends "base.html" %}
+{% extends "rango/base.html" %}
 
 {% load staticfiles %}
 
-{% block body_block %}
-<h1>Add a New Page</h1>
-<form id="page_form" method="POST" action='{% url "add_page" category.slug %}'>
-    {% csrf_token %}
-    {% for hidden in form.hidden_fields %}
-        {{ hidden }}
-    {% endfor %}
+{% block title %}Add Page{% endblock %}
 
-    {% for field in form.visible_fields %}
-        {{ field.errors }}
-        {{ field.help_text }}
-        {{ field }}<br />
-    {% endfor %}
-    <input type="submit" value="Create Page" />
-</form>
+{% block body_block %}
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+{% if category %}
+    <form role="form" id="page_form" method="POST"
+          action='{% url "add_page" category.slug %}'>
+    <h2 class="form-signin-heading">Add a Page to
+        <a href='{% url "category" category.slug %}'>{{ category.name }}</a>
+    </h2>
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        {% for field in form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}
+            <br />
+            {{ field }}
+            <br />
+            <br />
+        {% endfor %}
+        <br />
+        <button class="btn btn-primary" type="submit" name="Submit">Submit</button>
+    </form>
+{% else %}
+    <p>This is category does not exist.</p>
+{% endif %}
+
 {% endblock %}

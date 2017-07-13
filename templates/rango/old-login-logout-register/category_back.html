@@ -1,16 +1,14 @@
-{% extends "rango/base.html" %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rango</title>
+    </head>
 
-{% load staticfiles %}
-
-{% load bootstrap_toolkit %}
-
-{% block title %}{{ category_name }}{% endblock %}
-
-{% block body_block %}
-    <h1>{{ category_name }}</h1>
-    <a href='{% url "add_page" category_name_slug %}'>Add a New Page</a>
-    {% if category %}
-        {% if pages %}
+    <body>
+        <h1>{{ category_name }}</h1>
+        <a href='{% url "add_page" category_name_slug %}'>Add a New Page</a>
+        {% if category %}
+            {% if pages %}
             <ul>
                 {% for page in pages %}
                 <li><a href="{{ page.url }}">{{ page.title }}</a></li>
@@ -21,5 +19,6 @@
             {% endif %}
         {% else %}
             The specified category {{ category_name }} does not exist!
-    {% endif %}
-{% endblock %}
+        {% endif %}
+    </body>
+</html>

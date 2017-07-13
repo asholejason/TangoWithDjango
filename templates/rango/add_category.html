@@ -1,10 +1,15 @@
-{% extends "base.html" %}
+{% extends "rango/base.html" %}
 
 {% load staticfiles %}
 
+{% block title %}Add Category{% endblock %}
+
 {% block body_block %}
-<h1>Add a New Category</h1>
-<form id="category_form" method="POST" action='{% url "add_category" %}'>
+
+<link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+
+<form role="form" id="category_form" method="POST" action='{% url "add_category" %}'>
+    <h1 class="form-signin-heading">Add a NewCategory</h1>
     {% csrf_token %}
     {% for hidden in form.hidden_fields %}
         {{ hidden }}
@@ -13,8 +18,11 @@
     {% for field in form.visible_fields %}
         {{ field.errors }}
         {{ field.help_text }}
+        <br />
         {{ field }}
+        <br />
     {% endfor %}
-    <input type="submit" value="Create Category" />
+    <br />
+    <button class="btn btn-primary" type="submit" name="Submit">Submit</button>
 </form>
 {% endblock %}

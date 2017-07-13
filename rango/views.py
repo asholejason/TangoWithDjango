@@ -21,7 +21,7 @@ def visitor_cookie_handler(request):
     last_visit_time = datetime.strptime(last_visit_cookie[:-7], "%Y-%m-%d %H:%M:%S")
 
     if (datetime.now() - last_visit_time).seconds > 5:
-        visits += 1
+        visits = str(int(visits) + 1)
         request.session['last_visit'] = str(datetime.now())
     else:
         # visits = 1
@@ -123,6 +123,12 @@ def add_page(request, category_name_slug):
     return render(request, 'rango/add_page.html', content_dict)
 
 
+@login_required
+def restricted(request):
+    return render(request, 'rango/restricted.html')
+
+
+"""
 def register(request):
 
     registered = False
@@ -176,16 +182,17 @@ def user_login(request):
     else:
         return render(request, 'rango/login.html', {})
 
-
-@login_required
-def restricted(request):
-    return render(request, 'rango/restricted.html')
-
-
+   
 @login_required
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/rango/')
+"""
+
+
+
+
+
 
 
 
