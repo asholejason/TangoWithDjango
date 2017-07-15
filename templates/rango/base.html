@@ -56,6 +56,7 @@
                 {% block side_block %}
                     {% load rango_extras %}
                     {% get_category_list category %}
+                    <a href='{% url "search" %}'>Search</a>
                 {% endblock %}
 
         </div>
